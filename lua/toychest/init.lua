@@ -15,12 +15,12 @@ M.setup = function(config)
 
 
   -- ensure the session directory is set up and commands are registered
-  M.ensure_dir()
+  ensure_dir()
   M.setup_commands()
 end
 
 -- ensure the session directory exists
-M.ensure_dir = function()
+ensure_dir = function()
   -- make the direcotry if it doesnt exist
   if not vim.loop.fs_stat(M.working_dir) then
     vim.fn.mkdir(M.working_dir, "p")
@@ -88,7 +88,5 @@ function M.setup_commands()
     { nargs = '*', complete = M.complete_sessions }
   )
 end
-
-M.setup()
 
 return M
