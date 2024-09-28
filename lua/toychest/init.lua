@@ -15,12 +15,12 @@ M.setup = function(config)
 
 
   -- ensure the session directory is set up and commands are registered
-  ensure_dir()
+  M.ensure_dir()
   M.setup_commands()
 end
 
 -- ensure the session directory exists
-ensure_dir = function()
+M.ensure_dir = function()
   -- make the direcotry if it doesnt exist
   if not vim.loop.fs_stat(M.working_dir) then
     vim.fn.mkdir(M.working_dir, "p")
@@ -35,6 +35,7 @@ end
 
 -- save a session with a given name
 M.save_session = function(name)
+  M.ensure_dir()
   if name and name ~= "" then
     vim.cmd(string.format('mks! %s%s', M.working_dir, name))
     print("Session saved as: " .. name)
